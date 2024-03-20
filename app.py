@@ -4,6 +4,10 @@ app = Flask(__name__)
 
 data = dict()
 
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    return render_template("index.html")
+
 @app.route('/server', methods=['GET', 'POST'])
 def showRequest():
     def storeRequest():
