@@ -18,7 +18,7 @@ def showRequest():
     if (request.is_json):
         request_data = request.json
     else:
-        request_data = "no json data in request"
+        request_data = request.data
     req_header = request.headers
     req_method = request.method
 
