@@ -24,7 +24,7 @@ def showRequest():
 
     storeRequest()
 
-    return jsonify(request_data)
+    return request_data
 
 
 
