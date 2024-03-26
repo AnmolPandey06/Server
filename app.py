@@ -1,3 +1,4 @@
+import binascii
 from flask import Flask, request, jsonify, json, render_template
 
 app = Flask(__name__)
@@ -8,7 +9,7 @@ def decode(req_data):
     hex_data = req_data
     
     if hex_data:
-        b_data = bytes(hex_data)
+        b_data = binascii.unhexlify(hex_data)
         return b_data
 
     return "No hex_data"
