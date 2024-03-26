@@ -8,9 +8,9 @@ data = dict()
 def decode(req_data):
     hex_data = req_data
     
-    if hex_data:
-        b_data = binascii.unhexlify(hex_data)
-        return b_data
+    if (hex_data):
+        dec_data = [int(byte) for byte in req_data]
+        return dec_data
 
     return "No hex_data"
 
@@ -24,7 +24,7 @@ def showRequest():
         data["req_data"] = request_data
         data["req_header"] = req_header
         data["req_method"] = req_method
-        data["req_bin_data"] = binary_data
+        data["dec_data"] = dec_data
 
     if (request.is_json):
         request_data = request.json
@@ -32,7 +32,7 @@ def showRequest():
         request_data = request.data
     req_header = request.headers
     req_method = request.method
-    binary_data = decode(request_data)
+    dec_data = decode(request_data)
 
     storeRequest()
 
@@ -47,7 +47,7 @@ def showData():
                         request_data = data["req_data"],
                         req_header = data["req_header"],
                         req_method = data["req_method"],
-                        binary_data = data['req_bin_data'])
+                        dec_data = data['dec_data'])
 
 
 if __name__ == '__main__':
