@@ -9,14 +9,14 @@
     <h1>Request Details</h1>
     <h2>Request Data</h2>
     <pre>{{ request_data }}</pre>
-    <h1>Decoded Data</h1>
+    <h2>Decoded Data</h2>
     <ul>
         {% for key, value in decoded_data.items() %}
             <li>{{key}} : {{value}}</li>
         {% endfor%}
     </ul>
     <h2>Request Method</h2>
-    <p>{{ req_method }}</p>
+    <p>{{ requestMethod }}</p>
 
 </body>
 </html>
