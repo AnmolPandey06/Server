@@ -1,5 +1,4 @@
 from base64 import decode
-from flask import request
 import binascii
 import struct
 import ctypes
@@ -56,9 +55,9 @@ Commands = {
 }
 
 def extractTlvValue(length, vec, idx, currTime):
-    if (length == 0) or (len(data[idx:]) < length):
+    if (length == 0) or (len(vec[idx:]) < length):
         return -1
-    for i in data[idx:idx+length]:
+    for i in vec[idx:idx+length]:
         currTime = (currTime << 8) | str(i)
     return 0
 
