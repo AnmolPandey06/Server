@@ -13,9 +13,6 @@ SUPPORTED_MAJOR_VERSION = 2
 SUPPORTED_MINOR_VERSION = 0
 
 
-req_data = request.data
-data = [int(byte) for byte in req_data]
-
 Variable = {
     0: "Null",
     1: "version", 
@@ -84,6 +81,7 @@ def decodeTlv(num):
     return varName, length
 
 def Parse(data):
+    decoded_data = dict() 
     if len(data) == 0:
         return "Error"
     idx = 0
