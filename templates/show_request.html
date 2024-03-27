@@ -10,7 +10,7 @@
     <h2>Request Data</h2>
     <pre>{{ request_data }}</pre>
 
-    {% for key, value in decoded_data %}
+    {% for key, value in {{decoded_data}} %}
         {{key}} : {{value}}
     {% endfor%}
 
