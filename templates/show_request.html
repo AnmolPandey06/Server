@@ -10,11 +10,9 @@
     <h2>Request Data</h2>
     <pre>{{ request_data }}</pre>
 
-    <h2>Decimal data</h2>
-    <pre>{{ dec_data }}</pre>
-
-    <h2>Request Headers</h2>
-    <pre>{{ req_headers }}</pre>
+    {% for key, value in decoded_data %}
+        {{key}} : {{value}}
+    {% endfor%}
 
     <h2>Request Method</h2>
     <p>{{ req_method }}</p>

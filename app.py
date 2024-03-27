@@ -6,9 +6,8 @@ app = Flask(__name__)
 data = dict()
 
 def decode(req_data):
-    hex_data = req_data
     
-    if (hex_data):
+    if (req_data):
         dec_data = [int(byte) for byte in req_data]
         return dec_data
 
