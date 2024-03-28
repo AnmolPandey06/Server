@@ -18,9 +18,8 @@ def home():
 #endpoint for signaling
 @app.route('/server', methods=['GET', 'POST'])
 def showRequest():
-    if request.method==['POST']:
-        postRequestData["req_data"] = request.data
-        postRequestData["req_method"] = request.method
+    postRequestData['req_data'] = request.data
+    postRequestData['req_method'] = request.method
 
     
     return "200 OK"
@@ -29,14 +28,17 @@ def showRequest():
 @app.route('/showData', methods=['GET'])
 def showData(): 
 
-    req_data = postRequestData["req_data"]
+    if postRequestData['req_data'] == None:
+        return "No request data"
+    req_data = postRequestData['req_data']
     dec_data = [int(bytes) for bytes in req_data]
     decoded_data = Parse(dec_data)
+    print(decoded_data)
     if isinstance(decoded_data, dict):
         return render_template("show_request.html", 
                             decoded_data=decoded_data,
-                            request_data = req_data,
-                            requestMethod = postRequestData["req_method"])
+                            request_data=req_data,
+                            requestMethod=postRequestData['req_method'])
     else:
         return "Error: Decoded Data is not a dictionary"
 

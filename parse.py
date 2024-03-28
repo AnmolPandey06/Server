@@ -158,35 +158,35 @@ def Parse(data):
         
         elif varName == Variable[12]:
             idx += 1
-            print("AppFlags: ", data[idx, idx+length])
+            print("AppFlags: ", data[idx: idx+length])
             idx = idx+length-1
-            decoded_data[varName] = str(data[idx, idx+length])
+            decoded_data[varName] = str(data[idx: idx+length])
             print(varName, ": ", decoded_data[varName])
 
         elif varName == Variable[11]:
             idx += 1
-            print("CollectionContent: ", data[idx, idx+length])
+            print("CollectionContent: ", data[idx: idx+length])
             idx = idx+length-1
-            decoded_data[varName] = str(data[idx, idx+length])
+            decoded_data[varName] = str(data[idx: idx+length])
             print(varName, ": ", decoded_data[varName])
 
         elif varName == Variable[15]:
             idx += 1
-            print("SignatureGCM: ", data[idx, idx+length])
+            print("SignatureGCM: ", data[idx: idx+length])
             idx = idx+length-1
-            decoded_data[varName] = str(data[idx, idx+length])
+            decoded_data[varName] = str(data[idx:idx+length])
             print(varName, ": ", decoded_data[varName])
         
         elif varName == Variable[17]:
             idx += 1
-            print("Padding: ", data[idx, idx+length])
+            print("Padding: ", data[idx:idx+length])
             idx = idx+length-1
-            decoded_data[varName] = str(data[idx, idx+length])
+            decoded_data[varName] = str(data[idx:idx+length])
             print(varName, ": ", decoded_data[varName])
 
         elif varName == Variable[20]:
             idx += 1
-            print("EnhanceGcm: ", data[idx, idx+length])
+            print("EnhanceGcm: ", data[idx: idx+length])
             idx = idx+length-1
             decoded_data[varName] = str(data[idx, idx+length])
             print(varName, ": ", decoded_data[varName])
