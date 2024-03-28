@@ -35,13 +35,20 @@ def showData():
     dec_data = [int(bytes) for bytes in req_data]
     print(dec_data)
     decoded_data = Parse(dec_data)
-    print(decoded_data)
+
     if isinstance(decoded_data, dict):
         return render_template("show_request.html", 
                             dec_data=dec_data,
                             decoded_data=decoded_data,
                             request_data=req_data,
                             requestMethod=req_method)
+    elif isinstance(decoded_data, str):
+        error = decoded_data
+        return render_template("show_request.html", 
+                                dec_data=dec_data,
+                                error=error,
+                                request_data=req_data,
+                                requestMethod=req_method)
     else:
         message = "Error: No dictionary found"
         return render_template("show_request.html",

@@ -37,7 +37,7 @@ Variable = {
     31: "ReservedLast"
 }
 var = ()
-decoded_data = dict()     #dictionary to store the decoded data
+# decoded_data = dict()     #dictionary to store the decoded data
 #Version class
 class Version:
     major = 3
@@ -82,7 +82,7 @@ def decodeTlv(num):
 def Parse(data):
     decoded_data = dict() 
     if len(data) == 0:
-        return "Error"
+        return "Error: No integers inside list"
     idx = 0
     parsedReplySize = 0
     while(idx != len(data)):
@@ -91,7 +91,7 @@ def Parse(data):
         length = int(var[1])
 
         if (varName == "Null"):
-            return "Error"
+            pass
         else:
             parsedReplySize += 1
             if (length == TLV_BIG_LEN_IN_BITS):
