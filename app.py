@@ -18,7 +18,7 @@ def home():
 @app.route('/server', methods=['GET', 'POST'])
 def showRequest():
     global req_data, req_method
-    req_data = request.data
+    req_data = request.get_data()
     req_method = request.method
 
     
@@ -31,6 +31,7 @@ def showData():
     if req_data == None:
         return "No request data"
     dec_data = [int(bytes) for bytes in req_data]
+    print(dec_data)
     decoded_data = Parse(dec_data)
     print(decoded_data)
     if isinstance(decoded_data, dict):
@@ -39,7 +40,11 @@ def showData():
                             request_data=req_data,
                             requestMethod=req_method)
     else:
-        return "Error: Decoded Data is not a dictionary"
+        message = "Error: No dictionary found"
+        return render_template("show_request.html", 
+                            request_data=req_data,
+                            requestMethod=req_method,
+                            message=message)
 
 
 if __name__ == '__main__':
