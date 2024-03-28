@@ -9,21 +9,25 @@
     <h1>Request Details</h1>
     <h2>Request Data</h2>
     <pre>{{ request_data }}</pre>
-    <h2>Decoded Data</h2>
+    
     {% if decode_data %}
+    <h2>Decoded Data</h2>
         <ul>
             {% for key, value in decoded_data.items() %}
                 <li>{{key}} : {{value}}</li>
             {% endfor%}
         </ul>
     {% endif %}
+
+    <h2>Decimal Data</h2>
+    <p>{{ dec_data }}</p>
+
     <h2>Request Method</h2>
     <p>{{ requestMethod }}</p>
 
     {%if message %}
         <h3>Message</h3>
         <p>{{message}}</p>
-        
     {% endif %}
 
 </body>

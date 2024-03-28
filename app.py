@@ -18,7 +18,9 @@ def home():
 @app.route('/server', methods=['GET', 'POST'])
 def showRequest():
     global req_data, req_method
-    req_data = request.get_data()
+    if (request.method == 'POST'):
+        req_data = request.get_data()
+    
     req_method = request.method
 
     
@@ -36,12 +38,14 @@ def showData():
     print(decoded_data)
     if isinstance(decoded_data, dict):
         return render_template("show_request.html", 
+                            dec_data=dec_data,
                             decoded_data=decoded_data,
                             request_data=req_data,
                             requestMethod=req_method)
     else:
         message = "Error: No dictionary found"
-        return render_template("show_request.html", 
+        return render_template("show_request.html",
+                            dec_data=dec_data, 
                             request_data=req_data,
                             requestMethod=req_method,
                             message=message)
