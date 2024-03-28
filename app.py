@@ -8,7 +8,6 @@ app = Flask(__name__)
 #req_data = b'\t@\x19\x01\x141234\x9cA~\x9c\xe3D\x00\x00\x00\x00\x86\x0f\xc3\x82Z\xaf\xaa\xbf\xd6m\x83\xda\x90Z\x94\x1aH\xa6\x0c\x151\x1d\x10\xd8\xb9r?Y\x8c\xc6\xa5'
 decoded_data = dict()
 dec_data = []
-postRequestData = dict()
 
 #all the routes
 @app.route('/', methods=['GET', 'POST'])
@@ -18,8 +17,9 @@ def home():
 #endpoint for signaling
 @app.route('/server', methods=['GET', 'POST'])
 def showRequest():
-    postRequestData['req_data'] = request.data
-    postRequestData['req_method'] = request.method
+    global req_data, req_method
+    req_data = request.data
+    req_method = request.method
 
     
     return "200 OK"
@@ -28,9 +28,8 @@ def showRequest():
 @app.route('/showData', methods=['GET'])
 def showData(): 
 
-    if postRequestData['req_data'] == None:
+    if req_data == None:
         return "No request data"
-    req_data = postRequestData['req_data']
     dec_data = [int(bytes) for bytes in req_data]
     decoded_data = Parse(dec_data)
     print(decoded_data)
@@ -38,7 +37,7 @@ def showData():
         return render_template("show_request.html", 
                             decoded_data=decoded_data,
                             request_data=req_data,
-                            requestMethod=postRequestData['req_method'])
+                            requestMethod=req_method)
     else:
         return "Error: Decoded Data is not a dictionary"
 
