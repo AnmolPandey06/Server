@@ -68,7 +68,11 @@ def decodeTlv(num):
     # print("varValue: ", varValue, "and varName = ", Variable[varValue])
     if (varValue > 20):
         pass
-    varName = Variable[varValue]
+    if varValue < 20:
+        varName = Variable[varValue]
+    else:
+        varValue = 0
+        varName = Variable[varValue]
 
     if ((num & HEADER_LEN_MASK) ==  TLV_BIG):
         length = TLV_BIG_LEN_IN_BITS
@@ -190,6 +194,8 @@ def Parse(data):
             idx = idx+length-1
             decoded_data[varName] = str(data[idx, idx+length])
             print(varName, ": ", decoded_data[varName])
+        elif varName == Variable[0]:
+            idx = idx+length-1
         idx += 1     
     return decoded_data   
 
